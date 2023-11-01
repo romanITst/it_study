@@ -1,0 +1,15 @@
+# Default server configuration
+#
+upstream apache2 {
+	# least_conn;
+	# ip_hash;
+
+	server localhost:8087;
+	server localhost:8088;
+	server localhost:8089;
+
+        }
+
+
+	 access_log /var/log/nginx/upstream_access.log;
+	 error_log /var/log/nginx/upstream_error.log;
