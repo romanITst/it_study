@@ -2,7 +2,7 @@
 
 # Description
 
-a = b = c = 1337
+a = b = c = input("Please, put the number: ")
 
 print (a)
 print (b)
