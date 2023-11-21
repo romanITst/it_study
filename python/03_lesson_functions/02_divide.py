@@ -3,8 +3,8 @@
 # Description: With this script you can divide the dividend by divider. 
 
 print("To divide you should enter 2 integers one by one.")
-dividend = int(input())
-divider = int (input())   
+dividend = int(input("Dividend: "))
+divider = int (input("Divider: "))   
 #number which user will enter will be ARGUMENT
 
 
