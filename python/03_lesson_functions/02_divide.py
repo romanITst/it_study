@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 
-# Description: With this script you can divide the dividend by divisor.
+# Description: With this script you can divide the dividend by divider. 
 
-def divide(dividend, divisor): #PARAMETERS are: dividend & divisor
+print("To divide you should enter 2 integers one by one.")
+dividend = int(input())
+divider = int (input())   
+#number which user will enter will be ARGUMENT
+
+
+def divide(dividend, divider): #PARAMETERS are: dividend & divider
 
     '''Divide the dividend by divisor
     param dividend: Number what will divide by divisor
     param divisor: Number by which dividend will divide
     return: The result of the division'''
 
-    return dividend / divisor
+    return dividend / divider
 
-result = divide(15, 5) #ARGUMENTS are: 15 & 5
+result = divide(dividend, divider) 
+print(f"The result of division is: {result}")
