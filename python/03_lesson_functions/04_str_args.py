@@ -5,8 +5,8 @@
 def strings(*args):
     '''
     Concatenate list of strings.
-    param args: Strings to concatenate.
-    return: The concatenated string.
+    :param args: Strings to concatenate.
+    :return: The concatenated string.
     '''
     result = ""
     for s in args:

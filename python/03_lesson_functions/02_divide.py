@@ -11,10 +11,10 @@ divider = int (input("Divider: "))
 def divide(dividend, divider): #PARAMETERS are: dividend & divider
 
     '''Divide the dividend by divisor
-    param dividend: Number what will divide by divisor
-    param divisor: Number by which dividend will divide
-    return: The result of the division'''
-
+    :param dividend: Number what will divide by divisor
+    :param divisor: Number by which dividend will divide
+    return: The result of the division
+    '''
     return dividend / divider
 
 result = divide(dividend, divider) 

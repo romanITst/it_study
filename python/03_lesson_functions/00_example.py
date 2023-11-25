@@ -12,11 +12,10 @@ def example(a, b):
 
     '''
     Sum 2 numbers and return the result
-    param a: 1st number
-    param b: 2nd number
-    return: the sum of a & b
+    :param a: 1st number
+    :param b: 2nd number
+    :return: the sum of a & b
     '''
-
     return a + b
 
 result = example(a, b)

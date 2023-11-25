@@ -18,12 +18,11 @@ def greet(name, age, profession):
 
     '''
     purpose: greet anybody
-    param name: name
-    param age: age
-    param profession: profession
-    return: Greeting anybody and ask about age and profession
+    :param name: name
+    :param age: age
+    :param profession: profession
+    :return: Greeting anybody and ask about age and profession
     '''
-
     return message
 
 

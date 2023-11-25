@@ -2,11 +2,17 @@
 
 # Description: This script shows how to use *args in functions
 
-def add_numbers(*args):
+
+def numbers(*args):
+    '''
+    Sum the numbers
+    :param args: List of numbers
+    :return: Sum of this numbers
+    '''
     result = 0
     for num in args:
         result += num
     return result
 
-result2 = add_numbers(1, 2, 3, 4, 5)
-print(result2)
+result2 = numbers(1, 3, 3, 7)
+print(f"Sum: {result2}")
