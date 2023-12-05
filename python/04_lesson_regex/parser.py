@@ -4,34 +4,42 @@
 
 
 import sys
-
-logfile = open("access.log", "r")
-line = logfile.readline()
-# with open("access.log") as logs_file:
-#     for line in logs_file:
-#         line = asd
+import re
 
 
-def splitting_line(line):
+def line_report(line): 
     """
-    Return splitted line
+    Returns from the logs file line IP address,
+    bytes sent, status, request time and agent
     """
     splitted_line = line.split()
-    return splitted_line
-
-splitted_line = splitting_line(line)
-
-
-def line_report(splitted_line): 
-    """
-    Return IP address and bytes sent
-    """
-    ipaddress = splitted_line[0]
-    bytes_sent = splitted_line[9]
-    logline = {f"IP address": ipaddress, "Bytes sent": bytes_sent}
-    return logline
+    return { "IP address": splitted_line[0],
+            "Bytes sent": splitted_line[9],
+           # "Status": splitted_line[8],
+           # "Request time": splitted_line[3],
+           # "Agent": splitted_line[11]
+    }
 
 
-for line in logfile:
-    line = line_report(splitted_line)
-    print(line)
+def log_report(logfile):
+    report = {}
+    #sum_of_bytes_sent = 0
+    sum_of_bytes_sent = []
+    for line in logfile:
+        line_dict = line_report(line)
+        ip_address = line_dict["IP address"]
+        bytes_sent = int(line_dict["Bytes sent"])
+        #status = line_dict["Status"]
+        #request_time = line_dict["Request time"]
+        #agent = line_dict["Agent"]
+        #sum_of_bytes_sent += int(bytes_sent)
+        sum_of_bytes_sent.append(bytes_sent)
+        sum2 = sum(sum_of_bytes_sent)
+        print(sum2)
+        report.setdefault(ip_address, []).append(bytes_sent)
+    return report
+
+
+with open("access.log", "r") as log:
+    result = log_report(log)
+    print(result)
