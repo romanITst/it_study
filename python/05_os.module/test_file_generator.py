@@ -19,17 +19,17 @@ def main_function(file_name):
     print("Text was added to file!")
 
 
-if os.path.exists(str(sys.argv[1])) == True:
+if os.path.exists(str(sys.argv[1])):
     print("File is exist! Writing text to a file...")
     main_function(str(sys.argv[1]))
 
-if os.path.exists(str(sys.argv[1])) == False:
-    print("The file is doesn't exist. Want to create it? Type 'y' or 'n'")
-    if str(input()) == "y":
+if not os.path.exists(str(sys.argv[1])):
+    print("The file is doesn't exist. Want to create it?")
+    if str(input("[yes/no]")) == "yes":
         main_function(str(sys.argv[1]))
-        sys.exit()
+        sys.exit(1)
     else:
         print("Exit...")
-        sys.exit()
+        sys.exit(1)
 
 
