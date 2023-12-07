@@ -4,9 +4,9 @@
 # and 10 folders in it, and 10 folders in each of this. Example: 
 # input:                                                        
 # folder_generator.py [1] [2] [3] [4] [5]
-# [1] - main_folder / [2] - subfolder_1_lvl / [3] - count of [2]                   
-# [4] - subfolder_2_lvl / [5] - count of [4]
-# folder_generator.py music artist 5 album 7
+# [1] - main_folder / [2] - subfolder_1_lvl / [3] - subfolder_2_lvl                   
+# [4] - files
+# folder_generator.py music artist album song
 # output: music
 #         ├── artist00
 #         │   ├── album00
@@ -30,15 +30,23 @@ def creating_folder(folder_name):
     created_folder = os.mkdir(folder_name)
     return created_folder
 
+def creating_file(file):
+    with open(file, "w+") as file:
+        file.close()
 
 def creating_subfolders():
-    for i in range(int(sys.argv[3])):
+    for i in range(10):
         lvl_1_folder = str(sys.argv[2] + "0{}".format(i))
         creating_folder(lvl_1_folder)
         os.chdir(lvl_1_folder)
-        for s in range(int(sys.argv[5])):
-            lvl_2_folder = str(sys.argv[4] + "0{}".format(s))
+        for s in range(10):
+            lvl_2_folder = str(sys.argv[3] + "0{}".format(s))
             creating_folder(lvl_2_folder)
+            os.chdir(lvl_2_folder)
+            for g in range(10):
+                file = str(sys.argv[4] + "0{}".format(g))
+                creating_file(file)
+            os.chdir("..")
         os.chdir("..")
 
 if os.path.exists(str(sys.argv[1])):
