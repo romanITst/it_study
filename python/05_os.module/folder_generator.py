@@ -2,7 +2,19 @@
 
 # Description: This script creates a target folder(if it does not exist),
 # and 10 folders in it, and 10 folders in each of this. Example: 
-# pass
+# input:                                                        
+# folder_generator.py [1] [2] [3] [4] [5]
+# [1] - main_folder / [2] - subfolder_1_lvl / [3] - count of [2]                   
+# [4] - subfolder_2_lvl / [5] - count of [4]
+# folder_generator.py music artist 5 album 7
+# output: music
+#         ├── artist00
+#         │   ├── album00
+#         │   ├── album01
+#         │   ...
+#         │   └── album07
+#         ├── artist01
+#         ...
 
 
 import os
