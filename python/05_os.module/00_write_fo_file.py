@@ -1,21 +1,34 @@
 #!/usr/bin/env python3
 
-# Description: This script is opening file (or creating if it doesn't exist)
-# and writing to it information you need.
+# Description: This script opens the file (or creates it if it doesn't exist)
+# and writes the necessary information into it the required number of times.
+# order of entering: test_file_generator.py 1 "2" 3
+# 1 = file name, 2 = "necessary phrase", 3 = necessary count of strings
 
 
 import sys
+import os
 
 
-file_name = sys.argv[1]
-
-def opening_and_writing_to_file(file_name):
+def main_function(file_name):
     with open(file_name, "a+") as file:
-        print("File is ready to writing")
         for i in range(int(sys.argv[3])):
             file.write(str(sys.argv[2]))
             file.write("\n")
     file.close()
-    print("Information was added to file")
+    print("Text was added to file!")
 
-opening_and_writing_to_file(file_name)
+
+if os.path.exists(str(sys.argv[1])):
+    print("File is exist! Writing text to a file...")
+    main_function(str(sys.argv[1]))
+
+if not os.path.exists(str(sys.argv[1])):
+    print("The file is doesn't exist. Want to create it?")
+    if str(input("[yes/no]")) == "yes":
+        main_function(str(sys.argv[1]))
+        sys.exit(1)
+    else:
+        print("Exit...")
+        sys.exit(1)
+
