@@ -32,4 +32,3 @@ if not os.path.exists(str(sys.argv[1])):
         print("Exit...")
         sys.exit(1)
 
-
