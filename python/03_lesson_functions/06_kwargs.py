@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# Description: shows how to use kwargs in functions
+# Description: This script shows how to use keyword arguments.
+
 
 def display_info(**kwargs):
     '''
