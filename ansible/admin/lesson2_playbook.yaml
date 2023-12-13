@@ -1,12 +1,20 @@
 ---
 - name: First system preparing
   hosts: all
+  gather_facts: no
   become: no
   vars: 
     ssh_key_filename: ssh_roman_admin_key
-    ssh_key_location_path: /home/roman/git/it_study/ansible/admin/ssh
+    ssh_key_location_path: ~/git/it_study/ansible/admin/ssh
   
   tasks:
-  - name: debug
-    debug:
-    
+  - name: generate SSH key "{{ ssh_key_filename }}"
+    user:
+      name: "roman"
+      generate_ssh_key: yes
+      ssh_key_type: rsa
+      ssh_key_bits: 4096
+      ssh_key_file: "{{ ssh_key_location_path }}/{{ ssh_key_filename }}"
+      force: no
+    delegate_to: localhost
+    run_once: yes
