@@ -1,2 +1,3 @@
 ansible_user: roman
 ansible_password: roman
+ansible_become_user: root
