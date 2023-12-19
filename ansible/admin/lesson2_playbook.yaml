@@ -1,42 +1,47 @@
 ---
 - name: First system preparing
   hosts: all
-  gather_facts: no
-  become: no
-  vars: 
+  gather_facts: false
+  become: false
+  vars:
     ssh_key_filename: ssh_roman_admin_key
-    ssh_key_location_path: ~/git/it_study/ansible/admin/ssh
+    ssh_key_location_path: /home/roman/git/it_study/ansible/admin/ssh
     sshd_config_file: /etc/ssh/sshd_config
     local_user: roman
-  
+
   tasks:
-  - name: generate SSH key "{{ ssh_key_filename }}"
+  - name: Generate SSH key 
     user:
-      name: "{{ local_user  }}"
-      generate_ssh_key: yes
+      name: "{{ local_user }}"
+      generate_ssh_key: true
       ssh_key_type: rsa
       ssh_key_bits: 4096
       ssh_key_file: "{{ ssh_key_location_path }}/{{ ssh_key_filename }}"
-      force: no
+      force: false
     delegate_to: localhost
-    run_once: yes
 
-  #- name: debug
-  #  debug:
-  #    msg: "{{ lookup('file', ssh_key_location_path+'/'+ssh_key_filename+'.pub') }}"
-
-  - name: copy SSH key to remote hosts
-    ansible.builtin.authorized_key:
-      key: "{{ lookup('file', ssh_key_location_path+'/'+ssh_key_filename+'.pub' )}}"
-      state: present
-      user: "{{ ansible_user  }}"
+  - name: Copy SSH key to remote host
+    ansible.builtin.command: ssh-copy-id -s -i /home/roman/git/it_study/ansible/admin/ssh/ssh_roman_admin_key.pub "{{ local_user }}@{{ ansible_host }}"
+    delegate_to: localhost
   
-  - name: disable SSH password connection
-    become: yes 
-    become_user: root 
-    become_method: sudo
+
+  - name: Disable SSH password connection
+    become: true 
+    become_user: root
+    become_method: su
     become_flags: '-s /bin/bash' 
-    ansible.builtin.lineinfile:
-      path: "{{ sshd_config_file  }}"
-      regexp: "^#PasswordAuthentication"
-      line: "PasswordAuthetication no"
+    ansible.builtin.copy:
+      src: "/home/roman/git/it_study/ansible/admin/disable-ssh-password.conf"
+      dest: "/etc/ssh/sshd_config.d/"
+    notify: 
+      - Restart sshd.service
+
+  handlers:
+  - name: Restart sshd.service
+    become: true
+    become_method: su
+    become_user: root 
+    become_flags: '-s /bin/bash'
+    ansible.builtin.service:
+      name: sshd
+      state: restarted
