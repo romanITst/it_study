@@ -1,0 +1,23 @@
+
+PLAY [First system preparing] **************************************************
+
+TASK [Generate SSH key] ********************************************************
+ok: [node5 -> localhost]
+ok: [node6 -> localhost]
+
+TASK [Copy SSH key to remote host] *********************************************
+changed: [node5 -> localhost]
+changed: [node6 -> localhost]
+
+TASK [Disable SSH password connection] *****************************************
+changed: [node6]
+changed: [node5]
+
+TASK [Restart sshd.service] ****************************************************
+changed: [node5]
+changed: [node6]
+
+PLAY RECAP *********************************************************************
+node5                      : ok=4    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node6                      : ok=4    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
