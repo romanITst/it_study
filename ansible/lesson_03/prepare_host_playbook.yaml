@@ -1,0 +1,24 @@
+---
+- name: Host preparation
+  hosts: all
+  become: true
+  gather_facts: false
+  vars: 
+    requirements:
+    - git
+    - unzip
+    - wget
+    - net-tools
+    - python3-venv
+    - tree
+    - vim
+
+  tasks:
+
+  - name: Check/Install requirements packages
+    become: true
+    become_method: sudo
+    ansible.builtin.apt:
+      name: "{{ requirements }}"
+      state: present
+      update_cache: true
