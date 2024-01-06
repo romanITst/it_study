@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+
+# Description: greeting the person, which name you put
+
+
+if [ -z ${1} ]; then
+	echo "Error! Put the name!"
+else
+	echo "Hello, ${1}!"
+
+fi
+
+
+# https://codernet.ru/articles/web/kak_opredelit_pusta_li_peremennaya_bash/
+# Пометка для меня. Сайт-инструкция по установке/проверке пустых переменных

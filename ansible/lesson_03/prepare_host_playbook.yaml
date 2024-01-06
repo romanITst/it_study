@@ -1,0 +1,61 @@
+---
+- name: Host preparation
+  hosts: all
+  become: true
+  become_method: sudo
+  gather_facts: false
+  vars: 
+    requirements:
+    - git
+    - unzip
+    - wget
+    - net-tools
+    - python3-venv
+    - tree
+    - vim
+
+  tasks:
+
+  - name: Check/Install requirements packages
+    ansible.builtin.apt:
+      name: "{{ requirements }}"
+      state: present
+      update_cache: true
+
+- name: Nginx host preparation
+  hosts: all
+  become: true
+  become_method: sudo
+
+  tasks:
+
+  - name: Checking state of / Installing Nginx
+    ansible.builtin.apt:
+      name: nginx
+      state: present
+      update_cache: true
+    notify:
+      - Enable nginx.service
+      - Start nginx.service
+
+  - name: Check that Nginx working
+    ansible.builtin.uri:
+      url: "http://{{ ansible_host }}:80"
+      return_content: true
+      status_code: 200
+    register: nginx
+
+  - name: Show result of cheking nginx working
+    ansible.builtin.debug:
+      msg: "{{ nginx }}"
+  
+  handlers:
+  - name: Enable nginx.service
+    ansible.builtin.service:
+      name: nginx
+      state: enabled
+
+  - name: Start nginx.service
+    ansible.builtin.service:
+      name: nginx
+      state: started

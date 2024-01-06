@@ -1,0 +1,14 @@
+#  HomeWork tasks /  WebServers_Apache2
+
+
+#  1. Install Apache web server on your VM.
+
+#  2. Check that it’s running and accessible (open in web-browser or with curl).
+
+#  3. Create 3 different .html static pages.
+
+#  4. Configure Apache to display those pages on ports :8080, :8081 and
+#  :8082 respectively.
+
+#  5. Reload Apache and check that the new configuration is applied and
+#  pages are accessible.

@@ -1,0 +1,20 @@
+# Default server configuration
+#
+server {
+	listen 83 default_server;
+	listen [::]:83 default_server;
+
+	root /var/www/83;
+
+	server_name _;
+
+	location / {
+		proxy_pass http://apache2;
+		try_files $uri $uri/ =404;
+	}
+
+}
+
+        access_log /var/log/nginx/83_access.log;
+       # error_log /var/log/nginx/error.log;
+

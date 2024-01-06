@@ -1,0 +1,15 @@
+---
+- name: Ansible setup module
+  hosts: all
+  gather_facts: false
+  become: false
+
+  tasks:
+  - name: Gathering info about system
+    ansible.builtin.setup:
+      filter:
+        - all_ipv4_addresses
+  
+  - name: Show facts about remote hosts
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts }}"

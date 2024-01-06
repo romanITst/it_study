@@ -1,0 +1,21 @@
+# Default server configuration
+#
+server {
+	listen 86 default_server;
+	listen [::]:86 default_server;
+
+	root /var/www/86;
+
+	server_name localhost;
+
+	location / {
+		proxy_pass http://apache2;
+		try_files $uri $uri/ =404;
+	}
+
+        }
+
+
+
+	 access_log /var/log/nginx/86_access.log;
+	 error_log /var/log/nginx/86_error.log;

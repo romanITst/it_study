@@ -1,0 +1,41 @@
+---
+- name: SSH host preparation
+  hosts: all
+  become: false
+  become_method: sudo
+  gather_facts: false
+  vars:
+    ssh_key_location: ~/git/it_study/ansible/lesson_03/ssh/
+    ssh_key_file_name: "{{ ssh_key_location }}id_rsa"
+
+  tasks:
+
+  - name: Creating ssh key
+    ansible.builtin.user:
+      name: roman
+      generate_ssh_key: true
+      ssh_key_type: rsa
+      ssh_key_bits: 4096
+      ssh_key_file: "{{ ssh_key_file_name }}"
+    delegate_to: localhost
+
+  - name: Copying ssh key to remote host
+    ansible.posix.authorized_key:
+      user: "{{ ansible_user }}"
+      state: present
+      key: "{{ lookup('file', ssh_key_file_name+'.pub') }}"
+
+  - name: Disable ssh password connection
+    become: true
+    become_method: sudo
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: "^#PasswordAuthentication"
+      line: "PasswordAuthentication no"
+
+  - name: Restart sshd.service
+    become: true
+    become_method: sudo
+    ansible.builtin.service:
+      name: sshd.service
+      state: restarted
