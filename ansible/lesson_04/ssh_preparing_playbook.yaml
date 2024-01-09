@@ -25,14 +25,6 @@
       state: present
       key: "{{ lookup('file', ssh_key_file_name+'.pub') }}"
 
-  - name: Disable ssh password connection
-    become: true
-    become_method: sudo
-    ansible.builtin.lineinfile:
-      path: /etc/ssh/sshd_config
-      regexp: "^#PasswordAuthentication"
-      line: "PasswordAuthentication no"
-
   - name: Restart sshd.service
     become: true
     become_method: sudo
