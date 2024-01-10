@@ -12,8 +12,7 @@
   - name: Disable PasswordAuthentication
     ansible.builtin.lineinfile:
       path: "{{ sshd_config_path }}"
-      regexp: 
-        - "^#PasswordAuthentication"
+      regexp: "^#PasswordAuthentication"
       line: "PasswordAuthentication no"
 
   - name: Disable PermitEmptyPasswords
