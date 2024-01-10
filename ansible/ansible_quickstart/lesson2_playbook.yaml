@@ -1,8 +1,0 @@
----
-- name: First system preparing
-  hosts: all
-  become: no
-  vars: 
-    ssh_key_filename: ssh_roman_admin_key
-    ssh_key_location_path: /home/roman/git/it_study/ansible_quickstart/ssh
-    
