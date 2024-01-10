@@ -1,5 +1,0 @@
-ansible_host: 192.168.56.10
-ansible_user: roman
-ansible_password: roman
-#ansible_become_user: roman
-ansible_become_password: roman
