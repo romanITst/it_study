@@ -1,0 +1,24 @@
+# Default server configuration
+#
+server {
+	listen 84 default_server;
+	listen [::]:84 default_server;
+
+	root /var/www/84;
+
+	server_name _;
+
+	location / {
+		return 200 "Hi from 84 port";
+		try_files $uri $uri/ =404;
+	}
+
+	location /files {
+                try_files $uri $uri/ =404;
+        }
+
+
+}
+
+	# access_log /var/log/nginx/84_access.log
+	# error_log /var/log/nginx/84_error.log

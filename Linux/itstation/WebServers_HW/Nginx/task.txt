@@ -1,0 +1,26 @@
+NGINX homeworik
+
+1. Install NGINX on you VM and check that it’s available on port 80.
+
+2. Create the following folders:
+- /var/www/83
+- /var/www/84
+- /var/www/85
+
+3. Create config files for each of the folders with corresponding ports.
+
+4. localhost:83 should give simple ‘Hello, World!’ page. Access logging only
+
+5. localhost:84 should respond with code 200 and text ‘Hi from port 84!’.
+
+6. localhost:84/files should contain pages 1.html, 2.html. (some text like ‘this is file1’
+would be fine).
+
+7. localhost:85 should display default nginx page.
+
+8. localhost:85/login should ask you to login and then displaying page with text ‘Login
+successful!’.
+
+For this you can create a separate ‘NGINX’ folder in your github repo, containing web
+pages, port config files and screenshots (not necessary) of browser requests to the paths
+above.
