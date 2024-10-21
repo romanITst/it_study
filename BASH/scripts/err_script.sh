@@ -5,7 +5,8 @@
 
 read -p "Enter the path to file: " ptf
 
-if sed -n /error/p $ptf
+#if sed -n /error/p $ptf
+if grep -w -o error $ptf 
 then
 	rm -i -v $ptf
 else
