@@ -1,17 +1,16 @@
 #!/bin/bash
 
-# Description:
-#
-#
-#
+# Description: This script will remove the file, if it finds the word "error" in it.
 
 
-echo "put the path to file here:"
-read path_to_file
-ptf=$path_to_file
+read -p "Enter the path to file: " ptf
 
-echo "path to file is $ptf"
-
+if sed -n /error/p $ptf
+then
+	rm -i -v $ptf
+else
+	echo "Error messages wasn't found. Terminate..."
+fi
 
 
 
