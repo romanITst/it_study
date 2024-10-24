@@ -8,11 +8,3 @@
 8 hwscr.service
 9 hwscr.service
 10 hwscr.service
-● hwscr.service - This service start the ~/it-training/bash/scripts/hwscr.sh
-     Loaded: loaded (/etc/systemd/system/hwscr.service; static)
-     Active: active (exited) since Thu 2024-10-24 16:17:26 UTC; 19s ago
-    Process: 1434 ExecStart=bash /home/roman/it-training/bash/scripts/hwscr.sh (code=exited, status=0/SUCCESS)
-   Main PID: 1434 (code=exited, status=0/SUCCESS)
-        CPU: 2ms
-
-Oct 24 16:17:26 ubuntu-server systemd[1]: Started hwscr.service - This service start the ~/it-training/bash/scripts/hwscr.sh.

@@ -1,9 +1,9 @@
 [Unit]
-Description=This service start the ~/it-training/linux/services/hwscr.sh
+Description=This service start the ~/it-training/linux/services/hwscr/hwscr.sh
 
 [Service]
 User=roman
-ExecStart=bash "/home/roman/it-training/linux/services/hwscr.sh"
+ExecStart=bash "/home/roman/it-training/linux/services/hwscr/hwscr.sh"
 Restart=no
 RemainAfterExit=yes
 
