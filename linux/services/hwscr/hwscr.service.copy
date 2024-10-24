@@ -1,0 +1,10 @@
+[Unit]
+Description=This service start the ~/it-training/bash/scripts/hwscr.sh
+
+[Service]
+User=roman
+ExecStart=bash "/home/roman/it-training/bash/scripts/hwscr.sh"
+Restart=no
+RemainAfterExit=yes
+
+[Install]
